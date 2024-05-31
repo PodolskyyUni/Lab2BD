@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Lab2BDDomain.Model.Order>
+
+@{
+    ViewData["Title"] = "Orders by Date Range";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Orders by Date Range</h1>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-warning">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <h2>Found Orders:</h2>
+        <ul class="list-group">
+            @foreach (var order in Model)
+            {
+                <li class="list-group-item">
+                    <strong>Id:</strong> @order.Id <br />
+                    <strong>Order Date:</strong> @order.OrderDate <br />
+                    <strong>Client Name:</strong> @order.Client.ClientName <br />
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-warning">No orders found within the specified date range.</div>
+    }
+</div>

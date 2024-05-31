@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Lab2BDDomain.Model.Factory>
+
+@{
+    ViewData["Title"] = "Factories Producing Client Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Factories Producing Client Products</h1>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-warning">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <h2>Found Factories:</h2>
+        <ul class="list-group">
+            @foreach (var factory in Model)
+            {
+                <li class="list-group-item">
+                    <strong>Factory ID:</strong> @factory.Id <br />
+                    <strong>Factory Name:</strong> @factory.FactoryName <br />
+                    <strong>Address:</strong> @factory.Adress <br />
+                    <strong>Maintenance:</strong> @factory.Maintenance <br />
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-warning">No factories found producing products ordered by the specified client.</div>
+    }
+</div>

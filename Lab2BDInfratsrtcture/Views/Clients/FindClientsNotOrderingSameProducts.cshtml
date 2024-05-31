@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Lab2BDDomain.Model.Client>
+
+@{
+    ViewData["Title"] = "Clients Not Ordering Same Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Clients Not Ordering Same Products</h1>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-warning">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <h2>Found Clients:</h2>
+        <ul class="list-group">
+            @foreach (var client in Model)
+            {
+                <li class="list-group-item">
+                    <strong>Client ID:</strong> @client.Id <br />
+                    <strong>Client Name:</strong> @client.ClientName <br />
+                    <strong>Contacts:</strong> @client.Contacts <br />
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-warning">No clients found who did not order any products ordered by the specified client.</div>
+    }
+</div>

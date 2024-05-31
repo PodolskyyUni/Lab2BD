@@ -1,0 +1,30 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Factories by Product Price and Amount Produced";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Factories by Product Price and Amount Produced</h1>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-warning">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <h2>Found Factory Addresses:</h2>
+        <ul class="list-group">
+            @foreach (var address in Model)
+            {
+                <li class="list-group-item">
+                    <strong>Address:</strong> @address
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-warning">No factories found with the specified product price range and minimum amount produced.</div>
+    }
+</div>

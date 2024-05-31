@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Вітаємо!</h1>
+    <a asp-action="Index" asp-controller="Clients" class="btn btn-warning">Клієнти</a>
+    <a asp-action="Index" asp-controller="Factories" class="btn btn-primary">Заводи</a>
+    <a asp-action="Index" asp-controller="Orders" class="btn btn-secondary">Замовлення</a>
+    <a asp-action="Index" asp-controller="Products" class="btn btn-info">Товари</a>
+    <a asp-action="Index" asp-controller="ReqProducts" class="btn btn-dark">Замовлені товари</a>
+    <a asp-action="Index" asp-controller="FactoryProducts" class="btn btn-danger">Товари вироблені на певному заводі</a>
+
+    <h4>Запит №1: Знайти замовлення за діапазоном дат</h4>
+    <form asp-action="SearchOrdersByDateRange" asp-controller="Orders" method="get">
+        <input type="date" name="startDate" required />
+        <input type="date" name="endDate" required />
+        <button type="submit" class="btn btn-primary">Шукати</button>
+    </form>
+
+    <h4>Запит №2: Знайти фабрики, які виробляють продукти з певним діапазоном вартості і мають вироблену кількість більше певного значення</h4>
+    <form asp-action="SearchFactoriesByProductPriceAndAmountProduced" asp-controller="Orders" method="get">
+        <input type="number" name="minPrice" placeholder="Мінімальна ціна" required />
+        <input type="number" name="maxPrice" placeholder="Максимальна ціна" required />
+        <input type="number" name="minAmountProduced" placeholder="Мінімальна кількість" required />
+        <button type="submit" class="btn btn-primary">Шукати</button>
+    </form>
+
+    <h4>Запит №3: Знайти продукти, що не замовлені клієнтом і не виробляються більше ніж на X одиниць на фабриках</h4>
+    <form asp-action="FindProductsNotOrderedByClientXAndNotProducedMoreThanXInFactories" asp-controller="Products" method="get">
+        <input type="text" name="clientXName" placeholder="Ім'я клієнта" required />
+        <input type="number" name="maxProduction" placeholder="Максимальна кількість виробленої продукції" required />
+        <button type="submit" class="btn btn-primary">Шукати</button>
+    </form>
+    
+    <h4>Запит №4: Знайти клієнтів, які замовляли ті самі товари, що і клієнт X</h4>
+    <form asp-action="FindClientsOrderingSameProducts" asp-controller="Clients" method="get">
+        <input type="text" name="clientXName" placeholder="Ім'я клієнта" required />
+        <button type="submit" class="btn btn-primary">Шукати</button>
+    </form>
+
+    <h4>Запит №5: Знайти фабрики, що виробляють хоча б один товар, замовлений клієнтом X</h4>
+    <form asp-action="FindFactoriesProducingClientProducts" asp-controller="Factories" method="get">
+        <input type="text" name="clientXName" placeholder="Ім'я клієнта" required />
+        <button type="submit" class="btn btn-primary">Шукати</button>
+    </form>
+
+    <h4>Запит №6: Знайти клієнтів, які не замовляли жодного товару, замовленого клієнтом X</h4>
+    <form asp-action="FindClientsNotOrderingSameProducts" asp-controller="Clients" method="get">
+        <input type="text" name="clientXName" placeholder="Ім'я клієнта" required />
+        <button type="submit" class="btn btn-primary">Шукати</button>
+    </form>
+</div>

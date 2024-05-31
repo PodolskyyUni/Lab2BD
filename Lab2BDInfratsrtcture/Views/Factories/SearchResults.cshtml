@@ -1,0 +1,33 @@
+﻿@model IEnumerable<object>
+
+@{
+    ViewData["Title"] = "Search Results";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Search Results</h1>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-warning">@ViewBag.Message</div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <h2>Results:</h2>
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">
+                    @foreach (var prop in item.GetType().GetProperties())
+                    {
+                        <strong>@prop.Name:</strong> @prop.GetValue(item, null) <br />
+                    }
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="alert alert-warning">No results found.</div>
+    }
+</div>
